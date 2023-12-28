@@ -55,10 +55,10 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
     end
 
     if boughtPet == true then
-	local color = tonumber(0x33dd99)
+	local webcolor = tonumber(0x33dd99)
 	local weburl = webhook
     else
-	local color = tonumber(0xff00000)
+	local webcolor = tonumber(0xff0000)
 	local weburl = webhookFail
     end
     
@@ -67,7 +67,7 @@ local function processListingInfo(uid, gems, item, version, shiny, amount, bough
         ['embeds'] = {
             {
                 ['title'] = snipeMessage,
-                ["color"] = color,
+                ["color"] = webcolor,
                 ["timestamp"] = DateTime.now():ToIsoDate(),
                 ['fields'] = {
                     {
@@ -188,7 +188,7 @@ local function jumpToServer()
     end 
     local servers = {} 
     if body and body.data then 
-        for i = v in next, body.data do 
+        for i, v in next, body.data do 
             if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
                 table.insert(servers, v.id)
             end
